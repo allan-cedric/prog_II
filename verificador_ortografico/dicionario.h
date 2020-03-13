@@ -1,5 +1,6 @@
-/* Header file : 'dicionario.h'
-   Escrito por : Allan Cedric G.B. Alves da Silva
+/* 
+   Header file : 'dicionario.h'
+   Escrito por : Allan Cedric G.B. Alves da Silva, desde 12/03/2020
    Profile : Aluno de graduação do curso de Ciência da Computação (UFPR)
    GRR : 20190351
 */

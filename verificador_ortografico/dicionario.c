@@ -1,3 +1,9 @@
+/*
+  Implementação das funções p/ realizar 
+  o trabalho : Verificador Ortográfico simples.
+  Ainda está em desenvolvimento.
+*/
+
 #include "dicionario.h"
 
 /*
