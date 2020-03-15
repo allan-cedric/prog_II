@@ -9,7 +9,7 @@
 void carrega_dicionario (FILE* arq, dicio_t *d)
 {
 
-   d->tam_aloc = 75000 ;
+   d->tam_aloc = MAX_ALOC ;
    d->palavra = aloca_dicionario (d) ;
 
    if (!d->palavra)
@@ -22,17 +22,15 @@ void carrega_dicionario (FILE* arq, dicio_t *d)
 
    /* Aloca cada palavra do dicionário */
    int i = 0 ;
-   while ( fgets (d->palavra[i], 50, arq) )
+   while (fgets (d->palavra[i], 50, arq))
    {
-      /* Remove o caractere '\n' lido pelo fgets */   
+      /* Remove o caractere '\n' lido pelo fgets */
       d->palavra[i][strcspn (d->palavra[i],"\n")] = 0 ;
 
       /* Limita o índice para não acessar posições de memória desconhecidas */
-      if ( i < d->tam_aloc-1 )
-	      i++ ;
-      else
+      if ( i >= d->tam_aloc-1 )
       {
-	      d->tam_aloc += 75000 ;
+	      d->tam_aloc += MAX_ALOC ;
 	      d->palavra = realoca_dicionario (d) ;
 	      if (!d->palavra)
 	      {
@@ -40,10 +38,11 @@ void carrega_dicionario (FILE* arq, dicio_t *d)
 		 exit (1) ;
 	      }		
 	      aloca_caracteres (d, ++i) ;
-      } 
+      }else
+	      i++ ;
    }
-
-   d->tam_dicio = i + 1 ;
+      
+   d->tam_dicio = i ;
 			
 }
 
@@ -52,7 +51,6 @@ void *aloca_dicionario (dicio_t *d)
    return (malloc (sizeof(char *)*(d->tam_aloc))) ;
 }
 
-/* Em testes */
 void *realoca_dicionario (dicio_t *d)
 {
    return (realloc (d->palavra, sizeof(char *)*(d->tam_aloc))) ;
@@ -83,11 +81,9 @@ void desaloca_dicionario (dicio_t *d)
    free (d->palavra) ;
 }
 
-/* Função teste */
 void impressao_dicionario (dicio_t *d)
 {
 	int i ;
-	for (i = 0; i < d->tam_dicio-1; i++)
-		fprintf (stdout,"%s\n",d->palavra[i]) ;
-	fprintf (stdout,"%s",d->palavra[d->tam_dicio-1]) ;
+	for (i = 0; i < d->tam_dicio; i++)
+		fprintf (stdout,"%s:%i\n",d->palavra[i],i) ;
 }

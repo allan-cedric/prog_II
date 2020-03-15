@@ -10,6 +10,12 @@
 #include <stdlib.h>
 
 /*
+  Defines
+*/
+
+#define MAX_ALOC 75000
+
+/*
    Estrutura de dados p/ alocar o dicionário
 */
 struct dicio_t
