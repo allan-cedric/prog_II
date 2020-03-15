@@ -81,9 +81,61 @@ void desaloca_dicionario (dicio_t *d)
    free (d->palavra) ;
 }
 
+int eh_letra (unsigned char ch)
+{
+   if (ch >= 'A' && ch <= 'Z')
+	   return 1 ;
+   if (ch >= 'a' && ch <= 'z')
+	   return 1 ;
+   if (ch >= 192 && ch <= 221)
+	   return 1 ;
+   if (ch >= 224 && ch <= 253)
+	   return 1 ;
+
+   return 0 ;
+}
+
+int bsearch_dicionario (char *p, dicio_t *d)
+{
+   int ini = 0 ;
+   int fim = d->tam_dicio - 1 ;
+   int meio = (ini+fim)/2 ;
+   int valor = strcmp(p,d->palavra[meio]) ;
+
+   while ((valor != 0) && (ini <= fim))
+   {
+      if (valor > 0)
+      	ini = meio + 1 ;
+      else
+	fim = meio - 1 ;
+
+      meio = (ini+fim)/2 ;
+
+      valor = strcmp(p,d->palavra[meio]) ;
+   }
+
+   if (ini <= fim)
+	   return 1 ;
+   return 0 ;
+}
+
+char *minuscula (unsigned char *s, int tam)
+{
+   int i ;
+   for (i = 0; i < tam; i++)
+   {
+      if (s[i] >= 'A' && s[i] <= 'Z')
+	      s[i] += 32 ;
+      else if (s[i] >= 192 && s[i] <= 221)
+	      s[i] += 32 ;
+   }
+
+   return (char *)s ;
+}
+
 void impressao_dicionario (dicio_t *d)
 {
    int i ;
    for (i = 0; i < d->tam_dicio; i++)
-      fprintf (stdout,"%s:%i\n",d->palavra[i],i) ;
+      fprintf (stdout,"%s\n",d->palavra[i]) ;
 }
