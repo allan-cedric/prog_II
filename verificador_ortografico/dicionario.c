@@ -14,8 +14,8 @@ void carrega_dicionario (FILE* arq, dicio_t *d)
 
    if (!d->palavra)
    {
-     perror ("Memória insuficiente! - 'aloca_dicionario'") ;
-     exit (1) ;
+      perror ("Memória insuficiente! - 'aloca_dicionario'") ;
+      exit (1) ;
    }
 
    aloca_caracteres (d, 0) ;
@@ -30,16 +30,16 @@ void carrega_dicionario (FILE* arq, dicio_t *d)
       /* Limita o índice para não acessar posições de memória desconhecidas */
       if ( i >= d->tam_aloc-1 )
       {
-	      d->tam_aloc += MAX_ALOC ;
-	      d->palavra = realoca_dicionario (d) ;
-	      if (!d->palavra)
-	      {
-	      	 perror ("Memória insuficiente! - 'realoca_dicionario'") ;
-		 exit (1) ;
-	      }		
-	      aloca_caracteres (d, ++i) ;
+         d->tam_aloc += MAX_ALOC ;
+	 d->palavra = realoca_dicionario (d) ;
+	 if (!d->palavra)
+	 {
+	    perror ("Memória insuficiente! - 'realoca_dicionario'") ;
+	    exit (1) ;
+	 }		
+	 aloca_caracteres (d, ++i) ;
       }else
-	      i++ ;
+        i++ ;
    }
       
    d->tam_dicio = i ;
@@ -83,7 +83,7 @@ void desaloca_dicionario (dicio_t *d)
 
 void impressao_dicionario (dicio_t *d)
 {
-	int i ;
-	for (i = 0; i < d->tam_dicio; i++)
-		fprintf (stdout,"%s:%i\n",d->palavra[i],i) ;
+   int i ;
+   for (i = 0; i < d->tam_dicio; i++)
+      fprintf (stdout,"%s:%i\n",d->palavra[i],i) ;
 }
