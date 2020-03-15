@@ -15,6 +15,8 @@
 struct dicio_t
 {
    char **palavra ;
+   int tam_dicio ; /* Número de palavras */
+   int tam_aloc ;  /* Quantidade de alocações */
 } ;
 typedef struct dicio_t dicio_t ;
 
@@ -23,12 +25,15 @@ typedef struct dicio_t dicio_t ;
 */
 void carrega_dicionario (FILE *arq, dicio_t *d) ;
 
-void aloca_caracteres (dicio_t *d, int tam) ;
+void *aloca_dicionario (dicio_t *d) ;
 
-void *aloca_dicionario (int tam) ;
+void *realoca_dicionario (dicio_t *d) ;
 
-void *realoca_dicionario (dicio_t *d, int tam) ;
+void aloca_caracteres (dicio_t *d, int ini) ;
 
 void desaloca_dicionario (dicio_t *d) ;
 
+/*
+  Função teste de impressão
+*/
 void impressao_dicionario (dicio_t *d) ;
