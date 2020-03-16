@@ -26,17 +26,17 @@ int main ()
 
    /* Verificador ortográfico simples */
    unsigned char ch ;
-   unsigned char palavra[50] ;
-   unsigned char palavra_aux[50] ;
+   unsigned char palavra[TAM_PALAVRA+1] ;
+   unsigned char palavra_aux[TAM_PALAVRA+1] ;
    int i ;
 
    ch = getchar () ;
    while (!feof(stdin))
    {
-      /* Impressão de caracteres (não-letras) */ 
+      /* Impressão de caracteres (não-letras) */
       while (!eh_letra(ch) && !feof(stdin))
       {
-         fprintf (stdout,"%c",ch) ;
+         printf ("%c",ch) ;
 	 ch = getchar () ;
       }
 
@@ -51,15 +51,21 @@ int main ()
       palavra[i] = '\0' ;
       palavra_aux[i] = '\0' ;
 
-      /* Busca binária no dicionário */
+      /* Busca binária no dicionário */ 
       if (!feof(stdin))
       {
-         if (bsearch_dicionario (minuscula(palavra_aux, 50),&dicionario))
+         if (bsearch_dicionario (minuscula(palavra_aux, TAM_PALAVRA),&dicionario))
 	   printf ("%s",palavra) ;
 	 else
-	   printf ("[%s]",palavra) ;
+         {
+            palavra_aux[0] = toupper (palavra_aux[0]) ;
+	    if (bsearch_dicionario (palavra_aux, &dicionario))
+	      printf ("%s",palavra) ;
+	    else
+	      printf ("[%s]",palavra) ;
+	 }
       }
-   }			
+   }
    
    /* Desalocação do dicionário carregado */
    desaloca_dicionario (&dicionario) ;
