@@ -5,6 +5,9 @@
    GRR : 20190351
 */
 
+#ifndef __DICIONARIO_H__
+#define __DICIONARIO_H__
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -56,3 +59,5 @@ char *minuscula (unsigned char *s, int tam) ;
   Função teste de impressão
 */
 void impressao_dicionario (dicio_t *d) ;
+
+#endif
