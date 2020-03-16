@@ -7,8 +7,8 @@ int main ()
    char *locale = setlocale (LC_CTYPE,"pt_BR.ISO-8859-1") ;
    if (!locale)
    {
-		perror ("Erro ao especificar a locale!") ;
-		exit (1) ;	
+      perror ("Erro ao especificar a locale!") ;
+      exit (1) ;	
    } 
 
    /* Alocação dinâmica do dicionário */
@@ -25,42 +25,44 @@ int main ()
    carrega_dicionario (arq, &dicionario) ;
 
    /* Verificador ortográfico simples */
-	unsigned char ch ;
-	unsigned char palavra[50] ;
-	unsigned char palavra_aux[50] ;
-	int i ;
+   unsigned char ch ;
+   unsigned char palavra[50] ;
+   unsigned char palavra_aux[50] ;
+   int i ;
 
-	ch = getchar () ;
-	while (!feof(stdin))
-	{
-		while (!eh_letra(ch) && !feof(stdin))
-		{
-			fprintf (stdout,"%c",ch) ;
-			ch = getchar () ;
-		}
+   ch = getchar () ;
+   while (!feof(stdin))
+   {
+      /* Impressão de caracteres (não-letras) */ 
+      while (!eh_letra(ch) && !feof(stdin))
+      {
+         fprintf (stdout,"%c",ch) ;
+	 ch = getchar () ;
+      }
 
-		i = 0 ;
-		while (eh_letra(ch) && !feof(stdin))
-		{
-			palavra[i] = ch ;
-			palavra_aux[i++] = ch ;
-			ch = getchar () ;
-		}
-		palavra[i] = '\0' ;
-		palavra_aux[i] = '\0' ;
+      i = 0 ;
+      /* Armazenamento de uma palavra (composta por letras) */
+      while (eh_letra(ch) && !feof(stdin))
+      {
+	 palavra[i] = ch ;
+	 palavra_aux[i++] = ch ;
+         ch = getchar () ;
+      }
+      palavra[i] = '\0' ;
+      palavra_aux[i] = '\0' ;
 
-		if (!feof(stdin))
-		{
-			if (bsearch_dicionario (minuscula(palavra_aux, 50),&dicionario))
-				fprintf (stdout,"%s",palavra) ;
-			else
-				fprintf (stdout,"[%s]",palavra) ;
-		}
-	}			
+      /* Busca binária no dicionário */
+      if (!feof(stdin))
+      {
+         if (bsearch_dicionario (minuscula(palavra_aux, 50),&dicionario))
+	   printf ("%s",palavra) ;
+	 else
+	   printf ("[%s]",palavra) ;
+      }
+   }			
    
    /* Desalocação do dicionário carregado */
    desaloca_dicionario (&dicionario) ;
-
    fclose (arq) ;
 
    return 0 ;
