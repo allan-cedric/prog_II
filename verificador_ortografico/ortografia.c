@@ -54,7 +54,7 @@ int main ()
       /* Busca binária no dicionário */ 
       if (!feof(stdin))
       {
-         if (bsearch_dicionario (minuscula(palavra_aux, TAM_PALAVRA),&dicionario))
+         if (bsearch_dicionario (minuscula(palavra_aux),&dicionario))
 	   printf ("%s",palavra) ;
 	 else
          {

@@ -18,7 +18,7 @@
   Defines
 */
 
-#define MAX_ALOC 75000
+#define MAX_ALOC 20000
 #define TAM_PALAVRA 50
 
 /*
@@ -62,7 +62,7 @@ int ustrlen (unsigned char *p) ;
 /*
   Protótipos de funções de alteração de caracteres
 */
-unsigned char *minuscula (unsigned char *s, int tam) ;
+unsigned char *minuscula (unsigned char *s) ;
 
 /*
   Função teste de impressão

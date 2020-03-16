@@ -147,9 +147,10 @@ int ustrlen (unsigned char *p)
    return i ;	
 }
 
-unsigned char *minuscula (unsigned char *s, int tam)
+unsigned char *minuscula (unsigned char *s)
 {
    int i ;
+   int tam = ustrlen (s) ;
    for (i = 0; i < tam; i++)
       s[i] = tolower (s[i]) ;
 
