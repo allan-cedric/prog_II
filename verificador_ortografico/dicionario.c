@@ -84,13 +84,13 @@ void desaloca_dicionario (dicio_t *d)
 int eh_letra (unsigned char ch)
 {
    if (ch >= 'A' && ch <= 'Z')
-	   return 1 ;
+     return 1 ;
    if (ch >= 'a' && ch <= 'z')
-	   return 1 ;
+     return 1 ;
    if (ch >= 192 && ch <= 221)
-	   return 1 ;
+     return 1 ;
    if (ch >= 224 && ch <= 253)
-	   return 1 ;
+     return 1 ;
 
    return 0 ;
 }
@@ -125,9 +125,9 @@ char *minuscula (unsigned char *s, int tam)
    for (i = 0; i < tam; i++)
    {
       if (s[i] >= 'A' && s[i] <= 'Z')
-	      s[i] += 32 ;
+	s[i] += 32 ;
       else if (s[i] >= 192 && s[i] <= 221)
-	      s[i] += 32 ;
+	s[i] += 32 ;
    }
 
    return (char *)s ;
