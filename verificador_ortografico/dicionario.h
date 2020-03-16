@@ -10,6 +10,7 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
 #include <stdlib.h>
 #include <locale.h>
 
@@ -18,13 +19,14 @@
 */
 
 #define MAX_ALOC 75000
+#define TAM_PALAVRA 50
 
 /*
    Estrutura de dados p/ alocar o dicionário
 */
 struct dicio_t
 {
-   char **palavra ;
+   unsigned char **palavra ;
    int tam_dicio ; /* Número de palavras */
    int tam_aloc ;  /* Quantidade de alocações */
 } ;
@@ -39,21 +41,28 @@ void *aloca_dicionario (dicio_t *d) ;
 
 void *realoca_dicionario (dicio_t *d) ;
 
-void aloca_caracteres (dicio_t *d, int ini) ;
+void aloca_caracteres (dicio_t *d, int ini, int tam) ;
 
 void desaloca_dicionario (dicio_t *d) ;
 /*
   Protótipos de funções de identificação de caracteres
   e de busca no dicionário
 */
+
 int eh_letra (unsigned char ch) ;
 
-int bsearch_dicionario (char *p, dicio_t *d) ;
+int bsearch_dicionario (unsigned char *p, dicio_t *d) ;
+
+/* (UNSIGNED) Verifica se a string *p é maior, menor ou igual a string *p1 (Ordem lexicográfica) */
+int ustrcmp (unsigned char *p, unsigned char *p1) ;
+
+/* (UNSIGNED) Tamanho da string *p */
+int ustrlen (unsigned char *p) ;
 
 /*
   Protótipos de funções de alteração de caracteres
 */
-char *minuscula (unsigned char *s, int tam) ;
+unsigned char *minuscula (unsigned char *s, int tam) ;
 
 /*
   Função teste de impressão

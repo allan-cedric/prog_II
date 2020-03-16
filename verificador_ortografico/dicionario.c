@@ -18,15 +18,12 @@ void carrega_dicionario (FILE* arq, dicio_t *d)
       exit (1) ;
    }
 
-   aloca_caracteres (d, 0) ;
+   aloca_caracteres (d, 0, TAM_PALAVRA) ;
 
    /* Aloca cada palavra do dicionário */
    int i = 0 ;
-   while (fgets (d->palavra[i], 50, arq))
+   while (fscanf(arq,"%s",d->palavra[i]) != EOF)
    {
-      /* Remove o caractere '\n' lido pelo fgets */
-      d->palavra[i][strcspn (d->palavra[i],"\n")] = 0 ;
-
       /* Limita o índice para não acessar posições de memória desconhecidas */
       if ( i >= d->tam_aloc-1 )
       {
@@ -37,7 +34,7 @@ void carrega_dicionario (FILE* arq, dicio_t *d)
 	    perror ("Memória insuficiente! - 'realoca_dicionario'") ;
 	    exit (1) ;
 	 }		
-	 aloca_caracteres (d, ++i) ;
+	 aloca_caracteres (d, ++i, TAM_PALAVRA) ;
       }else
         i++ ;
    }
@@ -48,22 +45,21 @@ void carrega_dicionario (FILE* arq, dicio_t *d)
 
 void *aloca_dicionario (dicio_t *d)
 {
-   return (malloc (sizeof(char *)*(d->tam_aloc))) ;
+   return (malloc (sizeof(unsigned char *)*(d->tam_aloc))) ;
 }
 
 void *realoca_dicionario (dicio_t *d)
 {
-   return (realloc (d->palavra, sizeof(char *)*(d->tam_aloc))) ;
+   return (realloc (d->palavra, sizeof(unsigned char *)*(d->tam_aloc))) ;
 }
 
-void aloca_caracteres (dicio_t *d ,int ini)
+void aloca_caracteres (dicio_t *d, int ini, int tam)
 {
    int i ;
 
    for (i = ini; i < d->tam_aloc; i++)
    {
-      /* Margem segura de 50 caracteres p/ cada palavra*/
-      d->palavra[i] = malloc (sizeof(char)*50) ;
+      d->palavra[i] = malloc (sizeof(unsigned char)*(tam+1)) ;
 
       if (!d->palavra[i])
       {
@@ -95,12 +91,12 @@ int eh_letra (unsigned char ch)
    return 0 ;
 }
 
-int bsearch_dicionario (char *p, dicio_t *d)
+int bsearch_dicionario (unsigned char *p, dicio_t *d)
 {
    int ini = 0 ;
    int fim = d->tam_dicio - 1 ;
    int meio = (ini+fim)/2 ;
-   int valor = strcmp(p,d->palavra[meio]) ;
+   int valor = ustrcmp (p,d->palavra[meio]) ;
 
    while ((valor != 0) && (ini <= fim))
    {
@@ -111,7 +107,7 @@ int bsearch_dicionario (char *p, dicio_t *d)
 
       meio = (ini+fim)/2 ;
 
-      valor = strcmp(p,d->palavra[meio]) ;
+      valor = ustrcmp(p,d->palavra[meio]) ;
    }
 
    if (ini <= fim)
@@ -119,23 +115,50 @@ int bsearch_dicionario (char *p, dicio_t *d)
    return 0 ;
 }
 
-char *minuscula (unsigned char *s, int tam)
+int ustrcmp (unsigned char *p, unsigned char *p1)
+{
+   int tam_p = ustrlen (p) ;
+   int tam_p1 = ustrlen (p1) ;
+
+   int i ;
+   int j ;
+
+   for (i = 0, j = 0; i < tam_p && j < tam_p1; i++, j++)
+   {
+      if (p[i] < p1[j])
+	return -1 ;
+      else if (p[i] > p1[j])
+	return 1 ;
+   }
+
+
+   if (tam_p < tam_p1)
+     return -1 ;	
+   if (tam_p > tam_p1)
+     return 1 ;
+   return 0 ;
+}
+
+int ustrlen (unsigned char *p)
+{
+   int i = 0;
+   while (p[i] != '\0')
+	i++ ;
+   return i ;	
+}
+
+unsigned char *minuscula (unsigned char *s, int tam)
 {
    int i ;
    for (i = 0; i < tam; i++)
-   {
-      if (s[i] >= 'A' && s[i] <= 'Z')
-	s[i] += 32 ;
-      else if (s[i] >= 192 && s[i] <= 221)
-	s[i] += 32 ;
-   }
+      s[i] = tolower (s[i]) ;
 
-   return (char *)s ;
+   return s ;
 }
 
 void impressao_dicionario (dicio_t *d)
 {
    int i ;
    for (i = 0; i < d->tam_dicio; i++)
-      fprintf (stdout,"%s\n",d->palavra[i]) ;
+      fprintf (stdout,"%s:%i\n",d->palavra[i],i) ;
 }
