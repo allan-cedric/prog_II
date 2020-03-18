@@ -2,22 +2,27 @@ CC = gcc
 CFLAGS = -Wall -g
 LDLIBS = -lm
 
-OBJETOS = ortografia.o dicionario.o
+EXEC = ortografia
+OBJ = ortografia.o dicionario.o
 
-#default
-all: ortografia clean
+#Default
+all: ortografia
 
-#ligação
-ortografia: $(OBJETOS)
-	$(CC) $(OBJETOS) -o ortografia $(CFLAGS) $(LDLIBS)
+#Ligação
+ortografia: $(OBJ)
+	$(CC) $(OBJ) -o ortografia $(CFLAGS) $(LDLIBS)
 
-#compilação
+#Compilação
 ortografia.o: ortografia.c dicionario.h
 	$(CC) -c ortografia.c $(CFLAGS)
 
 dicionario.o: dicionario.c dicionario.h
 	$(CC) -c dicionario.c $(CFLAGS)
 
-#arquivos temporários
+#Remove arquivos temporários
 clean:
-	rm $(OBJETOS)
+	-rm -f $(OBJ) *~
+
+#Remove tudo que não é código-fonte
+purge: clean
+	-rm -f $(EXEC)
