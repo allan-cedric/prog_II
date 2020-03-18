@@ -2,7 +2,6 @@
 
 int main ()
 {
-
    /* Locale */
    char *locale = setlocale (LC_CTYPE,"pt_BR.ISO-8859-1") ;
    if (!locale)
@@ -40,8 +39,8 @@ int main ()
 	 ch = getchar () ;
       }
 
-      i = 0 ;
       /* Armazenamento de uma palavra (composta por letras) */
+      i = 0 ;
       while (eh_letra(ch) && !feof(stdin))
       {
 	 palavra[i] = ch ;
@@ -53,17 +52,17 @@ int main ()
 
       /* Busca binária no dicionário */ 
       if (!feof(stdin))
-      {
+      {	
          if (bsearch_dicionario (minuscula(palavra_aux),&dicionario))
 	   printf ("%s",palavra) ;
-	 else
+         else
          {
-            palavra_aux[0] = toupper (palavra_aux[0]) ;
+            palavra_aux[0] -= 32 ;
 	    if (bsearch_dicionario (palavra_aux, &dicionario))
 	      printf ("%s",palavra) ;
 	    else
 	      printf ("[%s]",palavra) ;
-	 }
+         }
       }
    }
    
