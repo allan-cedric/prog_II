@@ -9,9 +9,8 @@
 #define __DICIONARIO_H__
 
 #include <stdio.h>
-#include <string.h>
-#include <ctype.h>
 #include <stdlib.h>
+#include <ctype.h>
 #include <locale.h>
 
 /*
@@ -37,9 +36,9 @@ typedef struct dicio_t dicio_t ;
 */
 void carrega_dicionario (FILE *arq, dicio_t *d) ;
 
-void *aloca_dicionario (dicio_t *d) ;
+void *aloca_palavras (dicio_t *d) ;
 
-void *realoca_dicionario (dicio_t *d) ;
+void *realoca_palavras (dicio_t *d) ;
 
 void aloca_caracteres (dicio_t *d, int ini, int tam) ;
 
