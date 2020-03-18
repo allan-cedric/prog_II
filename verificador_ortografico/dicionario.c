@@ -8,13 +8,12 @@
 
 void carrega_dicionario (FILE* arq, dicio_t *d)
 {
-
    d->tam_aloc = MAX_ALOC ;
-   d->palavra = aloca_dicionario (d) ;
+   d->palavra = aloca_palavras (d) ;
 
    if (!d->palavra)
    {
-      perror ("Memória insuficiente! - 'aloca_dicionario'") ;
+      perror ("Memória insuficiente! - 'aloca_palavras'") ;
       exit (1) ;
    }
 
@@ -27,11 +26,12 @@ void carrega_dicionario (FILE* arq, dicio_t *d)
       /* Limita o índice para não acessar posições de memória desconhecidas */
       if ( i >= d->tam_aloc-1 )
       {
+	 /* Realocação de memória do dicionário */
          d->tam_aloc += MAX_ALOC ;
-	 d->palavra = realoca_dicionario (d) ;
+	 d->palavra = realoca_palavras (d) ;
 	 if (!d->palavra)
 	 {
-	    perror ("Memória insuficiente! - 'realoca_dicionario'") ;
+	    perror ("Memória insuficiente! - 'realoca_palavras'") ;
 	    exit (1) ;
 	 }		
 	 aloca_caracteres (d, ++i, TAM_PALAVRA) ;
@@ -40,15 +40,14 @@ void carrega_dicionario (FILE* arq, dicio_t *d)
    }
       
    d->tam_dicio = i ;
-			
 }
 
-void *aloca_dicionario (dicio_t *d)
+void *aloca_palavras (dicio_t *d)
 {
    return (malloc (sizeof(unsigned char *)*(d->tam_aloc))) ;
 }
 
-void *realoca_dicionario (dicio_t *d)
+void *realoca_palavras (dicio_t *d)
 {
    return (realloc (d->palavra, sizeof(unsigned char *)*(d->tam_aloc))) ;
 }
@@ -136,6 +135,7 @@ int ustrcmp (unsigned char *p, unsigned char *p1)
      return -1 ;	
    if (tam_p > tam_p1)
      return 1 ;
+
    return 0 ;
 }
 
@@ -153,7 +153,6 @@ unsigned char *minuscula (unsigned char *s)
    int tam = ustrlen (s) ;
    for (i = 0; i < tam; i++)
       s[i] = tolower (s[i]) ;
-
    return s ;
 }
 
