@@ -21,7 +21,7 @@ void carrega_dicionario(FILE *arq, dicio_t *d)
    int i = 0;
    while (fscanf(arq, "%s", d->palavra[i]) != EOF)
    {
-      /* Limite em relação a quantidade alocações disponíveis */
+      /* Limite em relação a quantidade de alocações disponíveis */
       if (i >= d->tam_aloc - 1)
       {
          /* Realocação de memória do dicionário */
@@ -114,10 +114,13 @@ int bsearch_dicionario(unsigned char *p, dicio_t *d)
 
 int ustrcmp(unsigned char *p, unsigned char *p1)
 {
-   int i = -1;
-   int j = -1;
+   int tam_p = ustrlen(p);
+   int tam_p1 = ustrlen(p1);
 
-   while (p[++i] && p1[++j])
+   int i;
+   int j;
+
+   for (i = 0, j = 0; i < tam_p && j < tam_p1; i++, j++)
    {
       if (p[i] < p1[j])
          return -1;
@@ -125,18 +128,27 @@ int ustrcmp(unsigned char *p, unsigned char *p1)
          return 1;
    }
 
-   if (i < j)
+   if (tam_p < tam_p1)
       return -1;
-   if (i > j)
+   if (tam_p > tam_p1)
       return 1;
 
    return 0;
 }
 
+int ustrlen(unsigned char *p)
+{
+   int i = 0;
+   while (p[i] != '\0')
+      i++;
+   return i;
+}
+
 unsigned char *minuscula(unsigned char *s)
 {
-   int i = -1;
-   while (s[++i])
+   int i;
+   int tam = ustrlen(s);
+   for (i = 0; i < tam; i++)
       s[i] = tolower(s[i]);
    return s;
 }
