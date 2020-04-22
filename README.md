@@ -9,12 +9,12 @@
   
 ### Arquivos:
   * header: dicionario.h
-      - Protótipo das funções utilizadas.
+      - Protótipos das funções utilizadas.
   
   * source: dicionario.c
       - Implementação das funções do arquivo dicionario.h.
       
-  * source: ortografica.c
+  * source: ortografia.c
       - Implementação do verificador ortográfico.
       
   * makefile
