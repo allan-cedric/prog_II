@@ -21,6 +21,8 @@
       - Na pasta contém um makefile para facilitar na compilação. :)
   
 ### Como executar ?
+  * No terminal (Compilação): make
+                              make clean
   * No terminal: ./ortografia < arquivo_para_verificar_ortografia.txt
   
   * Lembrando que o arquivo deve estar no padrão ISO-8859-1.
