@@ -4,22 +4,22 @@
 ### Como funciona ?
   * É um programa que verifica se uma dada palavra de um arquivo texto(padrão ISO-8859-1) está presente em um dicionário(nesse caso foi utilizado o arquivo "brazillian").
   
-  * Com o dicionário alocado na memória, a busca pela palavra é realizada a partir de um algoritmo de "Busca Binária"
+  * Com o dicionário alocado na memória, a busca pela palavra é realizada a partir de um algoritmo de "Busca Binária". Se a palavra estiver no dicionário se imprime a palavra original na STDOUT(saída padrão), senão imprime entre colchetes [].
   
 ### Arquivos:
   * header: dicionario.h
-      - Protótipo das funções utilizadas
+      - Protótipo das funções utilizadas.
   
   * source: dicionario.c
-      - Implementação das funções do arquivo dicionario.h
+      - Implementação das funções do arquivo dicionario.h.
       
   * source: ortografica.c
-      - Implementação do verificador ortográfico
+      - Implementação do verificador ortográfico.
       
   * makefile
-      - Na pasta contém um makefile para facilitar na compilação :)
+      - Na pasta contém um makefile para facilitar na compilação. :)
   
 ### Como executar ?
   * No terminal: ./ortografia < arquivo_para_verificar_ortografia.txt
   
-  * Lembrando que o arquivo deve estar no padrão ISO-8859-1
+  * Lembrando que o arquivo deve estar no padrão ISO-8859-1.
