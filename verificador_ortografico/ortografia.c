@@ -14,7 +14,7 @@ int main()
    FILE *arq;
    dicio_t dicionario;
 
-   arq = fopen("/home/bcc/acgbas19/usr/share/dict/brazilian", "r");
+   arq = fopen("brazilian", "r");
    if (!arq)
    {
       perror("Erro ao abrir o arquivo!");
