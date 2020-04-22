@@ -22,7 +22,7 @@
   
 ### Como executar ?
   * No terminal (Compilação): make
-                              make clean
+  * Para retirar os arquivos objeto: make clean
   * No terminal: ./ortografia < arquivo_para_verificar_ortografia.txt
   
   * Lembrando que o arquivo deve estar no padrão ISO-8859-1.
