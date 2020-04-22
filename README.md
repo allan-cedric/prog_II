@@ -4,7 +4,8 @@
 ### Como funciona ?
   * É um programa que verifica se uma dada palavra de um arquivo texto(padrão ISO-8859-1) está presente em um dicionário(nesse caso foi utilizado o arquivo "brazillian").
   
-  * Com o dicionário alocado na memória, a busca pela palavra é realizada a partir de um algoritmo de "Busca Binária". Se a palavra estiver no dicionário se imprime a palavra original na STDOUT(saída padrão), senão imprime entre a palavra entre colchetes [ ].
+  * Com o dicionário alocado na memória, a busca pela palavra é realizada a partir de um algoritmo de "Busca Binária". 
+  * Se a palavra estiver no dicionário se imprime a palavra original na STDOUT(saída padrão), senão imprime entre a palavra entre colchetes [ ].
   
 ### Arquivos:
   * header: dicionario.h
