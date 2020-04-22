@@ -1,7 +1,5 @@
 # Verificador ortográfico simples
   * Trabalho da disciplina de Programação II (CI1002)
-  
-  
 ## Como funciona ?
   * É um programa que verifica se uma dada palavra de um arquivo texto(padrão ISO-8859-1) está presente em um dicionário(nesse caso foi utilizado o arquivo "brazillian").
   
