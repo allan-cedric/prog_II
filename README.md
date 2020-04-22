@@ -19,10 +19,12 @@
       
   * makefile
       - Na pasta contém um makefile para facilitar na compilação. :)
-  
-### Como executar ?
+      
+### Compilação:
   * No terminal (Compilação): make
   * Para retirar os arquivos objeto: make clean
+  
+### Como executar ?
   * No terminal: ./ortografia < arquivo_para_verificar_ortografia.txt
   
   * Lembrando que o arquivo deve estar no padrão ISO-8859-1.
