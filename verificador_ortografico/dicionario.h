@@ -54,6 +54,9 @@ int bsearch_dicionario(unsigned char *p, dicio_t *d);
 /* (UNSIGNED) Verifica se a string *p é maior, menor ou igual a string *p1 (Ordem lexicográfica) */
 int ustrcmp(unsigned char *p, unsigned char *p1);
 
+/* (UNSIGNED) Tamanho da string *p */
+int ustrlen(unsigned char *p);
+
 /*
   Protótipos de funções de alteração de caracteres
 */
