@@ -21,7 +21,7 @@
       - Na pasta contém um makefile para facilitar na compilação. :)
       
 ### Compilação:
-  * No terminal (Compilação): make
+  * No terminal: make
   * Para retirar os arquivos objeto: make clean
   
 ### Como executar ?
