@@ -7,6 +7,7 @@
   * Com o dicionário alocado na memória, a busca pela palavra é realizada a partir de um algoritmo de "Busca Binária". 
   * Se a palavra estiver no dicionário se imprime a palavra original na STDOUT (saída padrão), senão imprime a palavra entre colchetes [ ].
   ### IMPORTANTE:
+   * O arquivo texto a ser verificado deve estar no padrão ISO-8859-1.
    * Se der a mensagem de erro: "Erro ao especificar a locale!"
    * Digite no terminal: sudo locale-gen pt_BR.ISO-8859-1
   
