@@ -16,8 +16,8 @@
 /*
   Defines
 */
-#define MAX_ALOC 20000
-#define TAM_PALAVRA 50
+#define MAX_ALOC 20000 /* Quantidade acumulativa de alocações */
+#define TAM_PALAVRA 50 /* Tamanho máximo de uma palavra que o programa aceita */
 
 /*
    Estrutura de dados p/ alocar o dicionário
